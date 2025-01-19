@@ -1,0 +1,26 @@
+.card{
+    margin: 10px 0;
+    background-color: #fff;
+    width: 100%;
+    box-shadow: none;
+    border-radius: 20px;
+}
+.assignessDiv{
+    display: flex;
+    justify-content:space-between;
+    color: #574964
+}
+.assigness{
+    color: #574964;
+     padding-top: 2
+}
+.avatarDiv{
+    display: flex;
+    color: #574964
+}
+.dateDiv{
+    display: flex;
+    color: #574964;
+    padding-top: 10px;
+
+}

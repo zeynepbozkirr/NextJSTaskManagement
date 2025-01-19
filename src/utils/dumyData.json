@@ -1,0 +1,28 @@
+{
+    "dummyUsers": [
+        {
+            "id": "1",
+            "icon": "RS",
+            "name": "Remy Sharp",
+            "avatar": "/static/images/avatar/1.jpg",
+            "color": "#FFCDD2",
+            "textColor": "#F44336"
+        },
+        {
+            "id": "2",
+            "icon": "KD",
+            "name": "Kent Dodds",
+            "avatar": "/static/images/avatar/2.jpg",
+            "color": "#D1C4E9",
+            "textColor": "#9C27B0"
+        },
+        {
+            "id": "3",
+            "icon": "TN",
+            "name": "Tim Neutkens",
+            "avatar": "/static/images/avatar/3.jpg",
+            "color": "#FFE0B2",
+            "textColor": "#FF9800"
+        }
+    ]
+}

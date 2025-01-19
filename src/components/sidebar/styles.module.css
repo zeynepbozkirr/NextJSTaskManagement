@@ -1,0 +1,14 @@
+.iconButton{
+    color: #fff;
+    margin-right: 2px;
+}
+.drawer{
+    width: 500px;
+    height: 100%;
+    padding: 20px;
+}
+
+.divider{
+    background-color: #ecf0f1;
+    margin: 10px 0px
+}
