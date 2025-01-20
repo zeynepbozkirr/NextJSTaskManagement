@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   Drawer,
   IconButton,
@@ -10,12 +10,13 @@ import {
   FormControlLabel,
   Checkbox,
   Avatar,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import DateRangePicker from "../datePicker";
-import { DragDropContext } from "@/context/DragDropContext";
-import { dummyUsers } from "../../utils/dumyData.json";
-import styles from "./styles.module.css";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import DateRangePicker from '../datePicker';
+import { DragDropContext } from '@/context/DragDropContext';
+import { dummyUsers } from '../../utils/dumyData.json';
+import styles from './styles.module.css';
+import Grid from '@mui/material/Grid2';
 
 interface TaskModalProps {
   handleClose: () => void;
@@ -47,8 +48,8 @@ const Sidebar: React.FC<TaskModalProps> = ({
 
   const task = getTaskById(columnId, taskId);
 
-  const [taskName, setTaskName] = useState(task?.name || "");
-  const [description, setDescription] = useState(task?.description || "");
+  const [taskName, setTaskName] = useState(task?.name || '');
+  const [description, setDescription] = useState(task?.description || '');
   const [assignedTo, setAssignedTo] = useState(task?.assignedTo || []);
   const [dates, setDates] = useState({
     startDate: task?.startDate || null,
@@ -64,12 +65,16 @@ const Sidebar: React.FC<TaskModalProps> = ({
     );
   };
   const handleSave = () => {
+    const startDate = dates?.startDate?.format('DD/MM/YYYY');
+    const endDate = dates?.endDate?.format('DD/MM/YYYY');
+
     updateTask({
       ...task,
       name: taskName,
       description,
       assignedTo,
-      ...dates,
+      startDate: startDate || null,
+      endDate: endDate || null,
       storyPoints,
     });
     handleClose();
@@ -92,20 +97,21 @@ const Sidebar: React.FC<TaskModalProps> = ({
         anchor="right"
         PaperProps={{
           style: {
-            width: "500px",
-            height: "100%",
-            padding: "20px",
+            width: '100%',
+            maxWidth: '500px',
+            height: '100%',
+            padding: '20px',
           },
         }}
         sx={{
           width: 250,
           flexShrink: 0,
-          "& .MuiDrawer-paper": {
+          '& .MuiDrawer-paper': {
             width: 250,
-            color: "#ecf0f1",
+            color: '#ecf0f1',
             paddingTop: 8,
-            boxSizing: "border-box",
-            position: "fixed",
+            boxSizing: 'border-box',
+            position: 'fixed',
             zIndex: 1300,
           },
         }}

@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, ReactNode } from "react";
-import { arrayMove } from "@dnd-kit/sortable";
-import { v4 as uuidv4 } from "uuid";
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+import { arrayMove } from '@dnd-kit/sortable';
+import { v4 as uuidv4 } from 'uuid';
 
 interface Task {
   id: string;
@@ -35,48 +35,61 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
 }) => {
   const [columns, setColumns] = useState<Column[]>([
     {
-      id: "column-1",
-      name: "To Do",
+      id: 'column-1',
+      name: 'Open',
       tasks: [
         {
-          id: "task-1",
-          name: "Task 1",
-          description: "Description 1",
+          id: 'task-1',
+          name: 'Task 1',
+          description: 'Description 1',
           storyPoints: 10,
-          assignedTo: ["RS"],
+          assignedTo: ['RS'],
         },
         {
-          id: "task-2",
-          name: "Task 2",
-          description: "Description 2",
+          id: 'task-2',
+          name: 'Task 2',
+          description: 'Description 2',
           storyPoints: 20,
-          assignedTo: ["KD"],
+          assignedTo: ['KD'],
         },
       ],
     },
     {
-      id: "column-2",
-      name: "In Progress",
+      id: 'column-2',
+      name: 'In Progress',
       tasks: [
         {
-          id: "task-3",
-          name: "Task 3",
-          description: "Description 3",
+          id: 'task-3',
+          name: 'Task 3',
+          description: 'Description 3',
           storyPoints: 30,
-          assignedTo: ["TN"],
+          assignedTo: ['TN'],
         },
       ],
     },
     {
-      id: "column-3",
-      name: "Done",
+      id: 'column-3',
+      name: 'In Review',
       tasks: [
         {
-          id: "task-4",
-          name: "Task 4",
-          description: "Description 4",
+          id: 'task-4',
+          name: 'Task 4',
+          description: 'Description 4',
+          storyPoints: 60,
+          assignedTo: ['TN'],
+        },
+      ],
+    },
+    {
+      id: 'column-4',
+      name: 'Done',
+      tasks: [
+        {
+          id: 'task-5',
+          name: 'Task 5',
+          description: 'Description 4',
           storyPoints: 50,
-          assignedTo: ["RS"],
+          assignedTo: ['RS'],
         },
       ],
     },
@@ -125,10 +138,11 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
 
   const addTask = (columnId: number, taskName: string) => {
     if (!taskName.trim()) return;
+
     const newTask: Task = {
       id: uuidv4(),
       name: taskName,
-      description: "",
+      description: '',
       assignedTo: [],
       startDate: null,
       endDate: null,
@@ -228,7 +242,7 @@ export const useDragDrop = () => {
   const context = useContext(DragDropContext);
 
   if (!context) {
-    throw new Error("useDragDrop has to be used within <useDragDrop.Provider>");
+    throw new Error('useDragDrop has to be used within <useDragDrop.Provider>');
   }
 
   return context;

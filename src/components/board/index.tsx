@@ -1,14 +1,14 @@
-"use client";
-import { useContext } from "react";
-import { DndContext, closestCenter } from "@dnd-kit/core";
-import { SortableContext } from "@dnd-kit/sortable";
-import { DragDropContext } from "../../context/DragDropContext";
-import { SortableColumn } from "../sortableColumn";
-import { SortableTask } from "../sortableTask";
-import { Avatar, Box, Button, Typography } from "@mui/material";
-import { dummyUsers } from "../../utils/dumyData.json";
-import Grid from "@mui/material/Grid2";
-import styles from "./styles.module.css";
+'use client';
+import { useContext } from 'react';
+import { DndContext, closestCenter } from '@dnd-kit/core';
+import { SortableContext } from '@dnd-kit/sortable';
+import { DragDropContext } from '../../context/DragDropContext';
+import { SortableColumn } from '../sortableColumn';
+import { SortableTask } from '../sortableTask';
+import { Avatar, Box, Button, Typography } from '@mui/material';
+import { dummyUsers } from '../../utils/dumyData.json';
+import Grid from '@mui/material/Grid2';
+import styles from './styles.module.css';
 
 const Board = () => {
   const {
@@ -19,12 +19,11 @@ const Board = () => {
     updateFilter,
     filterByUser,
   } = useContext(DragDropContext);
-  console.log(filterByUser, "filterByUser");
 
   return (
     <Box
       sx={{
-        height: "100px",
+        height: '100px',
       }}
     >
       <div className={styles.headerContainer} style={{}}>
@@ -32,7 +31,7 @@ const Board = () => {
           <Typography variant="h4" component="div">
             TASKS
           </Typography>
-          <Typography sx={{ color: "#574964" }}>
+          <Typography sx={{ color: '#574964' }}>
             short description will be placed her
           </Typography>
         </div>
@@ -48,8 +47,8 @@ const Board = () => {
                 backgroundColor: user.color,
                 border:
                   filterByUser === user.icon
-                    ? "1px solid " + user.textColor
-                    : "none",
+                    ? '1px solid ' + user.textColor
+                    : 'none',
               }}
               onClick={() => updateFilter(user.icon)}
             >
@@ -75,7 +74,7 @@ const Board = () => {
                 </SortableContext>
               </SortableColumn>
             ))}
-            <Button onClick={() => addColumn("add column")} style={{}}>
+            <Button onClick={() => addColumn('add column')} style={{}}>
               <Typography
                 variant="h3"
                 component="div"

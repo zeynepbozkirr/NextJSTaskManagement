@@ -1,10 +1,11 @@
-import React, { useContext, useState } from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
-import { DragDropContext } from "@/context/DragDropContext";
-import { Button, Input, Box, Typography, TextField } from "@mui/material";
-import MoveUp from "@mui/icons-material/MoveUp";
-import styles from "./styles.module.css";
+import React, { useContext, useState } from 'react';
+import { useSortable } from '@dnd-kit/sortable';
+import { CSS } from '@dnd-kit/utilities';
+import { DragDropContext } from '@/context/DragDropContext';
+import { Button, Input, Box, Typography, TextField } from '@mui/material';
+import DragIndicator from '@mui/icons-material/DragIndicator';
+
+import styles from './styles.module.css';
 
 interface SortableColumnProps {
   id: string;
@@ -23,7 +24,7 @@ export const SortableColumn: React.FC<SortableColumnProps> = ({
   const { addTask, updateColumnName } = useContext(DragDropContext);
 
   const [activeInput, setActiveInput] = useState<number | null>(null);
-  const [taskName, setTaskName] = useState<string>("");
+  const [taskName, setTaskName] = useState<string>('');
   const [isEditing, setIsEditing] = useState(false);
   const [columnName, setName] = useState(name);
 
@@ -34,7 +35,7 @@ export const SortableColumn: React.FC<SortableColumnProps> = ({
   const handleAddTask = (id: number) => {
     if (taskName.trim()) {
       addTask(id, taskName);
-      setTaskName("");
+      setTaskName('');
       setActiveInput(null);
     }
   };
@@ -61,16 +62,16 @@ export const SortableColumn: React.FC<SortableColumnProps> = ({
             <Typography
               variant="h6"
               onClick={() => setIsEditing(true)}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: 'pointer' }}
             >
               {name}
             </Typography>
           )}
         </div>
         <Typography component="div"></Typography>
-        <MoveUp
+        <DragIndicator
           {...listeners}
-          style={{ color: "#9DA0AB" }}
+          style={{ color: '#9DA0AB' }}
           sx={{ fontSize: 20 }}
         />
       </div>

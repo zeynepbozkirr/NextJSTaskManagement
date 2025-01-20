@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react';
 import {
   Card,
   CardContent,
@@ -6,12 +6,12 @@ import {
   Button,
   CardActions,
   Avatar,
-} from "@mui/material";
-import { DragDropContext } from "@/context/DragDropContext";
-import { useDraggable } from "@dnd-kit/core";
-import { OutlinedFlag } from "@mui/icons-material";
-import Sidebar from "../sidebar/sidebar";
-import styles from "./styles.module.css";
+} from '@mui/material';
+import { DragDropContext } from '@/context/DragDropContext';
+import { useDraggable } from '@dnd-kit/core';
+import { OutlinedFlag } from '@mui/icons-material';
+import Sidebar from '../sidebar/sidebar';
+import styles from './styles.module.css';
 
 interface SortableTaskProps {
   id: string;
@@ -34,20 +34,19 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
 
   const getBackgroundColor = (storyPoint: number) => {
     if (storyPoint >= 0 && storyPoint <= 10) {
-      return "#FFCDD2"; // Pastel kırmızı
+      return '#FFCDD2';
     } else if (storyPoint > 10 && storyPoint <= 20) {
-      return "#C8E6C9"; // Pastel yeşil
+      return '#C8E6C9';
     } else if (storyPoint > 20 && storyPoint <= 30) {
-      return "#FFECB3"; // Pastel sarı
+      return '#FFECB3';
     } else if (storyPoint > 30 && storyPoint <= 40) {
-      return "#B3E5FC"; // Pastel mavi
+      return '#B3E5FC';
     } else if (storyPoint > 40) {
-      return "#D1C4E9"; // Pastel mor
+      return '#D1C4E9';
     } else {
-      return "#FFFFFF"; // Beyaz (varsayılan)
+      return '#FFFFFF';
     }
   };
-  console.log(task.storyPoints, "yyy");
 
   const backgroundColor = getBackgroundColor(task.storyPoints);
 
@@ -58,6 +57,8 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
       : undefined,
     backgroundColor: backgroundColor,
   };
+  console.log(task, 'taskk');
+
   return (
     <Card
       ref={setNodeRef}
@@ -69,11 +70,11 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
         <Typography
           variant="h5"
           component="div"
-          sx={{ color: "text.secondary" }}
+          sx={{ color: 'text.secondary' }}
         >
           {task.name}
         </Typography>
-        <Typography sx={{ color: "text.secondary", mb: 1.5, paddingTop: 1 }}>
+        <Typography sx={{ color: 'text.secondary', mb: 1.5, paddingTop: 1 }}>
           Detail: {task.description}
         </Typography>
 
@@ -81,22 +82,22 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
           <div
             className={styles.assignessDiv}
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              color: "#574964",
+              display: 'flex',
+              justifyContent: 'space-between',
+              color: '#574964',
             }}
           >
             <Typography
               variant="body2"
               className={styles.assigness}
-              style={{ color: "#574964", paddingTop: 2 }}
+              style={{ color: '#574964', paddingTop: 2 }}
             >
               assigness:
             </Typography>
             <div
               style={{
-                display: "flex",
-                color: "#574964",
+                display: 'flex',
+                color: '#574964',
               }}
             >
               {task?.assignedTo.map((assign) => (
@@ -111,25 +112,25 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
         )}
         <div
           style={{
-            display: "flex",
-            color: "#574964",
+            display: 'flex',
+            color: '#574964',
             paddingTop: 10,
           }}
         >
-          <OutlinedFlag fontSize={"small"} />
+          <OutlinedFlag fontSize={'small'} />
           <Typography
             variant="body2"
             style={{
               paddingLeft: 5,
             }}
           >
-            {task?.endDate?.format("DD/MM/YYYY")}
+            {task?.endDate}
           </Typography>
         </div>
         <Typography
           variant="body2"
           className={styles.assigness}
-          style={{ color: "#574964", paddingTop: 10 }}
+          style={{ color: '#574964', paddingTop: 10 }}
         >
           Story Points: {task.storyPoints}
         </Typography>
