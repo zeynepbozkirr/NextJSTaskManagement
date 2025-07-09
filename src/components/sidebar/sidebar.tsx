@@ -54,7 +54,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
     if (!context) return;
 
     const { getTaskById } = context;
-    const task = getTaskById(columnId, taskId);
+    const task = getTaskById(taskId);
 
     if (task) {
       setTaskName(task.name || '');
