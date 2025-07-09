@@ -18,8 +18,14 @@ const Board = () => {
     return null;
   }
 
-  const { columns, onDragEnd, filteredColumns, updateFilter, filterByUser } =
-    context;
+  const {
+    columns,
+    onDragEnd,
+    filteredColumns,
+    updateFilter,
+    filterByUser,
+    addColumn,
+  } = context;
 
   const dummyUsers = data.dummyUsers;
 
@@ -77,7 +83,7 @@ const Board = () => {
                 </SortableContext>
               </SortableColumn>
             ))}
-            <Button onClick={() => datePicker()} style={{}}>
+            <Button onClick={() => addColumn()} style={{}}>
               <Typography
                 variant="h3"
                 component="div"
@@ -89,6 +95,7 @@ const Board = () => {
           </Grid>
         </SortableContext>
       </DndContext>
+      <div style={{ minHeight: 50 }}></div>
     </Box>
   );
 };
