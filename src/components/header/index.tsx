@@ -82,7 +82,7 @@ const Header = () => {
             </IconButton>
           </Grid>
 
-          {menuItem.map((item, index) => (
+          {menuItem?.map((item, index) => (
             <Typography
               key={index}
               variant="body1"
@@ -94,7 +94,7 @@ const Header = () => {
         </Grid>
 
         <Grid className={styles.grid} container spacing={3}>
-          {menuIcon.map((icon, index) => (
+          {menuIcon?.map((icon, index) => (
             <IconButton key={index} onClick={icon?.onClick} color="inherit">
               {icon.name}
             </IconButton>

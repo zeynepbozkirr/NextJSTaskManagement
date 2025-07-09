@@ -39,7 +39,7 @@ const Board = () => {
         </div>
 
         <Box display="flex" mb={2}>
-          {dummyUsers.map((user) => (
+          {dummyUsers?.map((user) => (
             <Avatar
               key={user.id}
               src={user.avatar}
@@ -65,7 +65,7 @@ const Board = () => {
             {filteredColumns?.map((column) => (
               <SortableColumn key={column.id} id={column.id} name={column.name}>
                 <SortableContext items={column.tasks.map((task) => task.id)}>
-                  {column.tasks.map((task) => (
+                  {column?.tasks?.map((task) => (
                     <SortableTask
                       key={task.id}
                       columnId={column.id}

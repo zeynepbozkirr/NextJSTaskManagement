@@ -106,7 +106,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
   const [filterByUser, setFilterByUser] = useState(null);
 
   const filteredColumns = filterByUser
-    ? columns.map((column) => ({
+    ? columns?.map((column) => ({
         ...column,
         tasks: column.tasks.filter((task) =>
           task.assignedTo.includes(filterByUser),
@@ -137,7 +137,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
 
   const updateColumnName = (columnId: string, newName: string) => {
     setColumns((prevColumns) =>
-      prevColumns.map((column) => ({
+      prevColumns?.map((column) => ({
         ...column,
         name: column.id === columnId ? newName : column.name,
       })),
@@ -157,7 +157,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
     };
 
     setColumns((prevColumns) =>
-      prevColumns.map((column) =>
+      prevColumns?.map((column) =>
         column.id === columnId.toString()
           ? { ...column, tasks: [...column.tasks, newTask] }
           : column,
@@ -167,7 +167,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
 
   const updateTask = (updatedTask) => {
     setColumns((prevColumns) =>
-      prevColumns.map((column) => ({
+      prevColumns?.map((column) => ({
         ...column,
         tasks: column.tasks.map((task) =>
           task.id === updatedTask.id ? updatedTask : task,
@@ -197,7 +197,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
     }
     let sourceColumn: Column | null = null;
     let destinationColumn: Column | null = null;
-    const updatedColumns = columns.map((column) => {
+    const updatedColumns = columns?.map((column) => {
       if (column.tasks.some((task) => task.id === activeId)) {
         sourceColumn = column;
       }
