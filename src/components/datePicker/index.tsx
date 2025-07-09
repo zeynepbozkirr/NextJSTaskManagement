@@ -45,11 +45,11 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Box display="flex" flexDirection="column" gap={2} mt={2}>
         <Typography variant="body1">Start Date:</Typography>
+
         <DatePicker
           label="Start Date"
           value={startDate}
           onChange={handleStartDateChange}
-          renderInput={(params) => <TextField {...params} fullWidth />}
         />
 
         <Typography variant="body1">End Date:</Typography>
@@ -57,7 +57,6 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
           label="End Date"
           value={endDate}
           onChange={handleEndDateChange}
-          renderInput={(params) => <TextField {...params} fullWidth />}
         />
       </Box>
     </LocalizationProvider>
