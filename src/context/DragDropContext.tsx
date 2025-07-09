@@ -21,11 +21,17 @@ interface DragDropContextType {
   columns: Column[];
   addColumn: () => void;
   addTask: (columnId: number, taskName: string) => void;
-  onDragEnd: (event: any) => void;
-  getTaskById: () => void;
+  onDragEnd: (event: {
+    sourceColumnId: string;
+    destinationColumnId?: string;
+    sourceTaskIndex: number;
+    destinationTaskIndex?: number;
+    taskId: string;
+  }) => void;
+  getTaskById: (taskId: string) => Task | undefined;
   updateColumnName: (columnId: string, newName: string) => void;
-  updateTask:() => void;
-  updateFilter:()=>void
+  updateTask: (taskId: string, updatedTask: Partial<Task>) => void;
+  updateFilter: (filterValue: string) => void;
 }
 
 export const DragDropContext = createContext<DragDropContextType | undefined>(
