@@ -22,8 +22,10 @@ interface DragDropContextType {
   addColumn: () => void;
   addTask: (columnId: number, taskName: string) => void;
   onDragEnd: (event: any) => void;
-  getTaskById: () => null;
+  getTaskById: () => void;
   updateColumnName: (columnId: string, newName: string) => void;
+  updateTask:() => void;
+  updateFilter:()=>void
 }
 
 export const DragDropContext = createContext<DragDropContextType | undefined>(

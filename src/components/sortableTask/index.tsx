@@ -100,8 +100,9 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
                 color: '#574964',
               }}
             >
-              {task?.assignedTo.map((assign) => (
+              {task?.assignedTo.map((assign,index) => (
                 <Avatar
+                key={index}
                   alt={assign}
                   src={assign}
                   style={{ width: 28, height: 28 }}
