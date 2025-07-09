@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext, useState } from 'react';
 import {
   Drawer,
@@ -38,48 +39,54 @@ const Sidebar: React.FC<TaskModalProps> = ({
   color,
 }) => {
   const context = useContext(DragDropContext);
+  const dummyUsers = data.dummyUsers;
 
-  if (!context) {
-    return null;
-  }
+  if (!context) return null;
+
   const { getTaskById, updateTask } = context;
-
   const task = getTaskById(columnId, taskId);
 
-  const [taskName, setTaskName] = React.useState(task?.name || '');
-  const [description, setDescription] = React.useState(task?.description || '');
-  const [assignedTo, setAssignedTo] = React.useState(task?.assignedTo || []);
-  const [dates, setDates] = React.useState({
-    startDate: task?.startDate || null,
-    endDate: task?.endDate || null,
+  // Eğer task yoksa, güvenli fallback ver
+  const [taskName, setTaskName] = useState('');
+  const [description, setDescription] = useState('');
+  const [assignedTo, setAssignedTo] = useState<string[]>([]);
+  const [dates, setDates] = useState({
+    startDate: null,
+    endDate: null,
   });
-  const [storyPoints, setStoryPoints] = React.useState(task?.storyPoints || 0);
-  const [open, setOpen] = React.useState(false);
+  const [storyPoints, setStoryPoints] = useState(0);
+  const [open, setOpen] = useState(false);
+
+  React.useEffect(() => {
+    if (task) {
+      setTaskName(task.name);
+      setDescription(task.description);
+      setAssignedTo(task.assignedTo || []);
+      setDates({
+        startDate: task.startDate || null,
+        endDate: task.endDate || null,
+      });
+      setStoryPoints(task.storyPoints || 0);
+    }
+  }, [task]);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
 
-  const handleUserToggle = (userId) => {
+  const handleUserToggle = (userId: string) => {
     setAssignedTo((prev) =>
       prev.includes(userId)
         ? prev.filter((id) => id !== userId)
         : [...prev, userId],
     );
   };
+
   const handleSave = () => {
+    if (!task) return;
+
     const startDate = dates?.startDate?.format('DD/MM/YYYY');
     const endDate = dates?.endDate?.format('DD/MM/YYYY');
-
-    // updateTask({
-    //   ...task,
-    //   name: taskName,
-    //   description,
-    //   assignedTo,
-    //   startDate: startDate || null,
-    //   endDate: endDate || null,
-    //   storyPoints,
-    // });
 
     updateTask(task.id, {
       ...task,
@@ -90,10 +97,9 @@ const Sidebar: React.FC<TaskModalProps> = ({
       endDate: endDate || null,
       storyPoints,
     });
+
     handleClose();
   };
-
-  const dummyUsers = data.dummyUsers;
 
   return (
     <div>
@@ -169,6 +175,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
           <Typography variant="body1" gutterBottom>
             Assign to:
           </Typography>
+
           {dummyUsers?.map((user, index) => (
             <FormControlLabel
               key={index}
@@ -191,17 +198,14 @@ const Sidebar: React.FC<TaskModalProps> = ({
                       backgroundColor: user.color,
                     }}
                   />
-                  <Typography
-                    style={{
-                      color: user.textColor,
-                    }}
-                  >
+                  <Typography style={{ color: user.textColor }}>
                     {user.name}
                   </Typography>
                 </Box>
               }
             />
           ))}
+
           <Divider className={styles.divider} />
 
           <Box mt={2} display="flex" justifyContent="space-between">
