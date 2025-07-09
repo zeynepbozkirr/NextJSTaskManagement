@@ -29,7 +29,7 @@ export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
   const handleOpen = () => setModalOpen(true);
   const handleClose = () => setModalOpen(false);
 
-  const { getTaskById, updateTask } = useContext(DragDropContext);
+  const { getTaskById } = useContext(DragDropContext);
   const task = getTaskById(columnId, id);
 
   const getBackgroundColor = (storyPoint: number) => {
