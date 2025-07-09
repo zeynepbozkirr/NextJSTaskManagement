@@ -3,6 +3,7 @@ import React from 'react';
 import { Box, Typography, TextField } from '@mui/material';
 import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { Dayjs } from 'dayjs';
 
 interface DateRangePickerProps {
   startDate: Dayjs | null;

@@ -83,7 +83,7 @@ const Board = () => {
                 </SortableContext>
               </SortableColumn>
             ))}
-            <Button onClick={() => addColumn()} style={{}}>
+            <Button onClick={() => datePicker()} style={{}}>
               <Typography
                 variant="h3"
                 component="div"
