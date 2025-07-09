@@ -6,7 +6,7 @@ import { DragDropContext } from '../../context/DragDropContext';
 import { SortableColumn } from '../sortableColumn';
 import { SortableTask } from '../sortableTask';
 import { Avatar, Box, Button, Typography } from '@mui/material';
-import { dummyUsers } from '../../utils/dumyData.json';
+import data from '../../utils/dumyData.json';
 import Grid from '@mui/material/Grid2';
 import styles from './styles.module.css';
 
@@ -19,6 +19,8 @@ const Board = () => {
     updateFilter,
     filterByUser,
   } = useContext(DragDropContext);
+
+  const dummyUsers = data.dummyUsers; 
 
   return (
     <Box

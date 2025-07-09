@@ -14,7 +14,7 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import DateRangePicker from '../datePicker';
 import { DragDropContext } from '@/context/DragDropContext';
-import { dummyUsers } from '../../utils/dumyData.json';
+import data from '../../utils/dumyData.json';
 import styles from './styles.module.css';
 import Grid from '@mui/material/Grid2';
 
@@ -79,6 +79,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
     });
     handleClose();
   };
+  const dummyUsers = data.dummyUsers; 
 
   return (
     <div>

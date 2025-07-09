@@ -20,7 +20,7 @@ Proje Kurulumu
 Projenin yerel ortamda çalıştırılabilmesi için aşağıdaki adımları izleyebilirsiniz:
 
 Gereksinimler
-->Node.js 
+->Node.js
 ->npm
 
 -git clone https://github.com/zeynepbozkirr/NextJSTaskManagement.git
@@ -31,4 +31,3 @@ Gereksinimler
 Geliştirme Notları
 Bu proje, kullanıcıların görevleri sürükleyip bırakabileceği ve bu görevlerin durumlarının güncellenebileceği bir yönetim paneli sağlar.
 Proje,temel işlevsellikleri sağlamak için dummy data kullanmaktadır.
-

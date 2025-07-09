@@ -1,8 +1,8 @@
-"use client";
-import React from "react";
-import { Box, Typography, TextField } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+'use client';
+import React from 'react';
+import { Box, Typography, TextField } from '@mui/material';
+import { LocalizationProvider, DatePicker } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 interface DateRangePickerProps {
   startDate: Dayjs | null;
@@ -21,7 +21,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const handleStartDateChange = (date: Dayjs | null) => {
     if (date) {
       if (endDate && date.isAfter(endDate)) {
-        alert("Başlangıç tarihi bitiş tarihinden önce olmalı.");
+        alert('Başlangıç tarihi bitiş tarihinden önce olmalı.');
         return;
       }
 
@@ -32,7 +32,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
   const handleEndDateChange = (date: Dayjs | null) => {
     if (date) {
       if (startDate && date.isBefore(startDate)) {
-        alert("Bitiş tarihi başlangıç tarihinden önce olamaz.");
+        alert('Bitiş tarihi başlangıç tarihinden önce olamaz.');
         return;
       }
 
