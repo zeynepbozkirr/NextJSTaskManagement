@@ -11,6 +11,13 @@ import Grid from '@mui/material/Grid2';
 import styles from './styles.module.css';
 
 const Board = () => {
+  const context = useContext(DragDropContext);
+
+  if (!context) {
+    // Context yoksa (undefined), bir şey gösterme veya yükleniyor gösterebilirsin
+    return null;
+  }
+
   const {
     columns,
     addColumn,
@@ -18,7 +25,7 @@ const Board = () => {
     filteredColumns,
     updateFilter,
     filterByUser,
-  } = useContext(DragDropContext);
+  } = context;
 
   const dummyUsers = data.dummyUsers;
 
