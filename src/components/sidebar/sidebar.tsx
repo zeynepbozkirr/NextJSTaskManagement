@@ -17,6 +17,7 @@ import DateRangePicker from '../datePicker';
 import { DragDropContext } from '@/context/DragDropContext';
 import data from '../../utils/dumyData.json';
 import styles from './styles.module.css';
+import dayjs, { Dayjs } from 'dayjs';
 
 interface TaskModalProps {
   handleClose: () => void;
@@ -45,7 +46,10 @@ const Sidebar: React.FC<TaskModalProps> = ({
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [assignedTo, setAssignedTo] = useState<string[]>([]);
-  const [dates, setDates] = useState({ startDate: null, endDate: null });
+  const [dates, setDates] = useState<{
+    startDate: Dayjs | null;
+    endDate: Dayjs | null;
+  }>({ startDate: null, endDate: null });
   const [storyPoints, setStoryPoints] = useState(0);
   const [open, setOpen] = useState(false);
 
@@ -61,8 +65,8 @@ const Sidebar: React.FC<TaskModalProps> = ({
       setDescription(task.description || '');
       setAssignedTo(task.assignedTo || []);
       setDates({
-        startDate: task.startDate || null,
-        endDate: task.endDate || null,
+        startDate: task.startDate ? dayjs(task.startDate) : null,
+        endDate: task.endDate ? dayjs(task.endDate) : null,
       });
       setStoryPoints(task.storyPoints || 0);
     }
