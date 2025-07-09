@@ -50,7 +50,6 @@ const Header = () => {
       id: '1',
       name: <SearchIcon />,
     },
-    ,
     {
       id: '2',
       name: <NotificationsIcon />,
@@ -88,7 +87,7 @@ const Header = () => {
               variant="body1"
               style={{ cursor: 'pointer' }}
             >
-              {item.name}
+              {item?.name}
             </Typography>
           ))}
         </Grid>
