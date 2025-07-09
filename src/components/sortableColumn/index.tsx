@@ -21,7 +21,11 @@ export const SortableColumn: React.FC<SortableColumnProps> = ({
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
-  const { addTask, updateColumnName } = useContext(DragDropContext);
+  const context = useContext(DragDropContext);
+
+  if (!context) return null;
+
+  const { addTask, updateColumnName } = context;
 
   const [activeInput, setActiveInput] = useState<number | null>(null);
   const [taskName, setTaskName] = useState<string>('');
