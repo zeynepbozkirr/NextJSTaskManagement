@@ -154,9 +154,9 @@ const Sidebar: React.FC<TaskModalProps> = ({
           <Typography variant="body1" gutterBottom>
             Assign to:
           </Typography>
-          {dummyUsers?.map((user) => (
+          {dummyUsers?.map((user, index) => (
             <FormControlLabel
-              key={user.id}
+              key={index}
               control={
                 <Checkbox
                   checked={assignedTo.includes(user.icon)}
