@@ -20,7 +20,7 @@ const Board = () => {
     filterByUser,
   } = useContext(DragDropContext);
 
-  const dummyUsers = data.dummyUsers; 
+  const dummyUsers = data.dummyUsers;
 
   return (
     <Box

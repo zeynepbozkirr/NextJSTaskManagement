@@ -78,7 +78,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
     });
     handleClose();
   };
-  const dummyUsers = data.dummyUsers; 
+  const dummyUsers = data.dummyUsers;
 
   return (
     <div>
