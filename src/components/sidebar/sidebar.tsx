@@ -38,6 +38,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
   color,
 }) => {
   const context = useContext(DragDropContext);
+
   if (!context) {
     return null;
   }
@@ -45,15 +46,15 @@ const Sidebar: React.FC<TaskModalProps> = ({
 
   const task = getTaskById(columnId, taskId);
 
-  const [taskName, setTaskName] = useState(task?.name || '');
-  const [description, setDescription] = useState(task?.description || '');
-  const [assignedTo, setAssignedTo] = useState(task?.assignedTo || []);
-  const [dates, setDates] = useState({
+  const [taskName, setTaskName] = React.useState(task?.name || '');
+  const [description, setDescription] = React.useState(task?.description || '');
+  const [assignedTo, setAssignedTo] = React.useState(task?.assignedTo || []);
+  const [dates, setDates] = React.useState({
     startDate: task?.startDate || null,
     endDate: task?.endDate || null,
   });
-  const [storyPoints, setStoryPoints] = useState(task?.storyPoints || 0);
-  const [open, setOpen] = useState(false);
+  const [storyPoints, setStoryPoints] = React.useState(task?.storyPoints || 0);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerToggle = () => {
     setOpen(!open);
