@@ -16,14 +16,14 @@ import Grid from '@mui/material/Grid2';
 import styles from './styles.module.css';
 
 const Header = () => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(false);
 
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleMenuOpen = () => {
+    setAnchorEl(true);
   };
 
   const handleMenuClose = () => {
-    setAnchorEl(null);
+    setAnchorEl(false);
   };
 
   const menuItem = [
