@@ -60,9 +60,9 @@ const Board = () => {
         </Box>
       </div>
       <DndContext collisionDetection={closestCenter} onDragEnd={onDragEnd}>
-        <SortableContext items={columns.map((column) => column.id)}>
+        <SortableContext items={columns?.map((column) => column.id)}>
           <Grid container spacing={2}>
-            {filteredColumns.map((column) => (
+            {filteredColumns?.map((column) => (
               <SortableColumn key={column.id} id={column.id} name={column.name}>
                 <SortableContext items={column.tasks.map((task) => task.id)}>
                   {column.tasks.map((task) => (
