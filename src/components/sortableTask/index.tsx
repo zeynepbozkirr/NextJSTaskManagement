@@ -17,7 +17,7 @@ interface SortableTaskProps {
   id: string;
   columnId: string;
   name: string;
-  handleOpen: () => void;
+  handleOpen?: () => void;
 }
 
 export const SortableTask: React.FC<SortableTaskProps> = ({ columnId, id }) => {
