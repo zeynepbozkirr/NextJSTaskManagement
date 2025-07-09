@@ -176,7 +176,7 @@ export const DragDropProvider: React.FC<{ children: ReactNode }> = ({
     );
   };
 
-  const onDragEnd = (event: any) => {
+  const onDragEnd = (event) => {
     const { active, over } = event;
 
     if (!over) return;
