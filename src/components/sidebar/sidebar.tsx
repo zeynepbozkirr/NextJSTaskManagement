@@ -1,5 +1,5 @@
 'use client';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import {
   Drawer,
   IconButton,
@@ -41,26 +41,24 @@ const Sidebar: React.FC<TaskModalProps> = ({
   const context = useContext(DragDropContext);
   const dummyUsers = data.dummyUsers;
 
-  if (!context) return null;
-
-  const { getTaskById, updateTask } = context;
-  const task = getTaskById(columnId, taskId);
-
-  // Eğer task yoksa, güvenli fallback ver
+  // hook'lar koşulsuz çağrılıyor
   const [taskName, setTaskName] = useState('');
   const [description, setDescription] = useState('');
   const [assignedTo, setAssignedTo] = useState<string[]>([]);
-  const [dates, setDates] = useState({
-    startDate: null,
-    endDate: null,
-  });
+  const [dates, setDates] = useState({ startDate: null, endDate: null });
   const [storyPoints, setStoryPoints] = useState(0);
   const [open, setOpen] = useState(false);
 
-  React.useEffect(() => {
+  // useEffect içinde task'ı çekip state'lere set et
+  useEffect(() => {
+    if (!context) return;
+
+    const { getTaskById } = context;
+    const task = getTaskById(columnId, taskId);
+
     if (task) {
-      setTaskName(task.name);
-      setDescription(task.description);
+      setTaskName(task.name || '');
+      setDescription(task.description || '');
       setAssignedTo(task.assignedTo || []);
       setDates({
         startDate: task.startDate || null,
@@ -68,7 +66,11 @@ const Sidebar: React.FC<TaskModalProps> = ({
       });
       setStoryPoints(task.storyPoints || 0);
     }
-  }, [task]);
+  }, [context, columnId, taskId]);
+
+  if (!context) return null;
+
+  const { updateTask } = context;
 
   const handleDrawerToggle = () => {
     setOpen(!open);
@@ -83,18 +85,15 @@ const Sidebar: React.FC<TaskModalProps> = ({
   };
 
   const handleSave = () => {
-    if (!task) return;
+    const startDate = dates?.startDate?.format?.('DD/MM/YYYY') || null;
+    const endDate = dates?.endDate?.format?.('DD/MM/YYYY') || null;
 
-    const startDate = dates?.startDate?.format('DD/MM/YYYY');
-    const endDate = dates?.endDate?.format('DD/MM/YYYY');
-
-    updateTask(task.id, {
-      ...task,
+    updateTask(taskId, {
       name: taskName,
       description,
       assignedTo,
-      startDate: startDate || null,
-      endDate: endDate || null,
+      startDate,
+      endDate,
       storyPoints,
     });
 
@@ -122,18 +121,6 @@ const Sidebar: React.FC<TaskModalProps> = ({
             maxWidth: '500px',
             height: '100%',
             padding: '20px',
-          },
-        }}
-        sx={{
-          width: 250,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: 250,
-            color: '#ecf0f1',
-            paddingTop: 8,
-            boxSizing: 'border-box',
-            position: 'fixed',
-            zIndex: 1300,
           },
         }}
       >
