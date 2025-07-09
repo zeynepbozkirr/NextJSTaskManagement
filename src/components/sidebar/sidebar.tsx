@@ -16,7 +16,6 @@ import DateRangePicker from '../datePicker';
 import { DragDropContext } from '@/context/DragDropContext';
 import data from '../../utils/dumyData.json';
 import styles from './styles.module.css';
-import Grid from '@mui/material/Grid2';
 
 interface TaskModalProps {
   handleClose: () => void;
