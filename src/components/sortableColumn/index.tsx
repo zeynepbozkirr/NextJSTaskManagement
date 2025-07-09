@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { DragDropContext } from '@/context/DragDropContext';
@@ -22,6 +22,10 @@ export const SortableColumn: React.FC<SortableColumnProps> = ({
     useSortable({ id });
 
   const context = useContext(DragDropContext);
+
+  useEffect(() => {
+    if (!context) return;
+  }, [context]);
 
   if (!context) return null;
 
