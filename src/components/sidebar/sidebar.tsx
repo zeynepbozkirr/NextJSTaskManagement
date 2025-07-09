@@ -37,13 +37,11 @@ const Sidebar: React.FC<TaskModalProps> = ({
   taskId,
   color,
 }) => {
-  const [open, setOpen] = useState(false);
-
-  const handleDrawerToggle = () => {
-    setOpen(!open);
-  };
-
-  const { getTaskById, updateTask } = useContext(DragDropContext);
+  const context = useContext(DragDropContext);
+  if (!context) {
+    return null;
+  }
+  const { getTaskById, updateTask } = context;
 
   const task = getTaskById(columnId, taskId);
 
@@ -55,6 +53,11 @@ const Sidebar: React.FC<TaskModalProps> = ({
     endDate: task?.endDate || null,
   });
   const [storyPoints, setStoryPoints] = useState(task?.storyPoints || 0);
+  const [open, setOpen] = useState(false);
+
+  const handleDrawerToggle = () => {
+    setOpen(!open);
+  };
 
   const handleUserToggle = (userId) => {
     setAssignedTo((prev) =>
@@ -67,7 +70,17 @@ const Sidebar: React.FC<TaskModalProps> = ({
     const startDate = dates?.startDate?.format('DD/MM/YYYY');
     const endDate = dates?.endDate?.format('DD/MM/YYYY');
 
-    updateTask({
+    // updateTask({
+    //   ...task,
+    //   name: taskName,
+    //   description,
+    //   assignedTo,
+    //   startDate: startDate || null,
+    //   endDate: endDate || null,
+    //   storyPoints,
+    // });
+
+    updateTask(task.id, {
       ...task,
       name: taskName,
       description,
@@ -78,6 +91,7 @@ const Sidebar: React.FC<TaskModalProps> = ({
     });
     handleClose();
   };
+
   const dummyUsers = data.dummyUsers;
 
   return (
