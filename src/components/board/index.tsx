@@ -18,14 +18,8 @@ const Board = () => {
     return null;
   }
 
-  const {
-    columns,
-    addColumn,
-    onDragEnd,
-    filteredColumns,
-    updateFilter,
-    filterByUser,
-  } = context;
+  const { columns, onDragEnd, filteredColumns, updateFilter, filterByUser } =
+    context;
 
   const dummyUsers = data.dummyUsers;
 
